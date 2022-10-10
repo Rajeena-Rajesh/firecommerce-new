@@ -110,7 +110,7 @@ function HomePage() {
                     <div className="text-center">
                       <img
                         src={product.imageURL}
-                        alt=""
+                        alt="image"
                         className="product-img"
                       />
                     </div>

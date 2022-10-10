@@ -255,7 +255,7 @@ function AdminPage() {
                     <th>Image</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Action</th>
+                   
                   </tr>
                 </thead>
 

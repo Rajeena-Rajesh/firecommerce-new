@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState,useEffect } from "react";
 import Layout from "../Components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { FaTrash } from "react-icons/fa";
@@ -7,7 +7,30 @@ import { addDoc, collection } from "firebase/firestore";
 import fireDB from "../fireConfig";
 import { toast } from "react-toastify";
 
+// import { useFormik } from "formik"; //form handling
+// import { placeOrderSchema } from "../schemas";
+
+// const initialValues = {
+//   name:"",
+//   address:"",
+//   pincode:"",
+//   phone:""
+// };
+
+
 function CartPage() {
+
+  // const { values, errors, touched, handleBlurr, handleChange, handleSubmit } =
+  // useFormik({
+  //   initialValues: initialValues,
+  //   validationSchema: placeOrderSchema,
+
+  //   onSubmit: (values, action) => {
+  //     console.log("values", values);
+  //     action.resetForm();
+  //   },
+  // });
+
   const { cartItems } = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
 
@@ -42,6 +65,10 @@ function CartPage() {
 
   const placeorder = async () => {
     const addressInfo = {
+      // Name:values.name,
+      // Address:values.address,
+      // Pincode:values.pincode,
+      // Phone:values.phone
       name,
       address,
       pincode,
@@ -51,8 +78,9 @@ function CartPage() {
 
     const orderInfo = {
       cartItems,
-      addressInfo,
+     addressInfo,
       email: JSON.parse(localStorage.getItem("currentUser")).user.email,
+      
       userid: JSON.parse(localStorage.getItem("currentUser")).user.uid,
     };
 
@@ -70,6 +98,7 @@ function CartPage() {
   };
 
   return (
+    
     <Layout loading={loading}>
       <table className="table mt-3">
         <thead>
@@ -126,41 +155,73 @@ function CartPage() {
 
             <input
               type="text"
-              value={name}
+             name="name"
+             value={name}
               placeholder="name"
               className="form-control"
-              onChange={(e) => setName(e.target.value)}
+              
+                onChange={(e)=>setName(e.target.value)}
+                // values={values.name}
+                // onBlurr={handleBlurr}
+                 // onChange={handleChange}
             />
+            {/* {errors.name && touched.name ? (
+                <p className="form-error">{errors.name}</p>
+              ) : null} */}
             <textarea
               type="text"
               rows={3}
-              value={address}
+             name='address'
               placeholder="address"
               className="form-control"
+              autoComplete="off"
+              value={address}
+                // onChange={handleChange}
+                // value={values.address}
+                // onBlurr={handleBlurr}
               onChange={(e) => setAddress(e.target.value)}
             />
+            {/* {errors.address && touched.address ? (
+                <p className="form-error">{errors.address}</p>
+              ) : null} */}
             <input
               type="number"
-              value={pincode}
+             name='pincode'
               placeholder="pincode"
               className="form-control"
+              autoComplete="off"
+              value={pincode}
+                // onChange={handleChange}
+                // values={values.pincode}
+                // onBlurr={handleBlurr}
+                
               onChange={(e) => setPincode(e.target.value)}
             />
+            {/* {errors.pincode && touched.pincode ? (
+                <p className="form-error">{errors.pincode}</p>
+              ) : null} */}
 
             <input
               type="number"
-              value={phoneNumber}
+            
               placeholder="phone number"
               className="form-control"
+              autoComplete="off"
+              value={phoneNumber}
+                // onChange={handleChange}
+                // values={values.phone}
+                // onBlurr={handleBlurr}
               onChange={(e) => setphoneNumber(e.target.value)}
             />
-
+{/* {errors.phone && touched.phone ? (
+                <p className="form-error">{errors.phone}</p>
+              ) : null} */}
             <hr />
           </div>
         </Modal.Body>
         <Modal.Footer>
           <button onClick={handleClose}>Close</button>
-          <button onClick={placeorder}>ORDER NOW</button>
+          <button onClick={placeorder}>ORDER NOW </button>
         </Modal.Footer>
       </Modal>
     </Layout>

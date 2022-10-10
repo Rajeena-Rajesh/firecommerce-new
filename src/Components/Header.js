@@ -7,12 +7,12 @@ import { useSelector } from "react-redux";
 function Header() {
 
   const { cartItems } = useSelector((state) => state.cartReducer);
-//const {user} =JSON.parse(localStorage.getItem('currentUser'))
-  //console.log(user)
+const {user} =JSON.parse(localStorage.getItem('currentUser'))
+  console.log(user)
 
   const logout=()=>{
     localStorage.removeItem("currentUser");
-    window.location.reload();
+   // window.location.reload();
   }
 
   return (
@@ -37,15 +37,15 @@ function Header() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav  ms-auto">
             <li className="nav-item active">
-              {/* <Link className="nav-link active" aria-current="page" to="/">
+              <Link className="nav-link active" aria-current="page" to="/">
                <FaUser /> {user.email.substring(0, user.email.length - 10)} 
-              </Link> */}
+              </Link>
             </li>
             
             <li className="nav-item">
-              {/* <Link className="nav-link" to="/Orders">
+              <Link className="nav-link" to="/Orders">
                 Orders
-              </Link> */}
+              </Link>
             </li>
             
             <li className="nav-item">

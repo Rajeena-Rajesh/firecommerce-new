@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import fireDB from "../fireConfig";
+
 import Layout from "../Components/Layout";
+
 
 function OrdersPage() {
   const [orders, setOrders] = useState([]);
 
+ 
   const [loading, setLoading] = useState(false);
   const userId = JSON.parse(localStorage.getItem("currentUser")).user.uid;
   useEffect(() => {
     getData();
   }, []);
+  
+
 
   async function getData() {
     try {
@@ -40,7 +45,8 @@ function OrdersPage() {
                     <th>Image</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Action</th>
+                    
+                    
                   </tr>
                 </thead>
 
@@ -58,6 +64,7 @@ function OrdersPage() {
                         </td>
                         <td>{item.name}</td>
                         <td>{item.price}</td>
+                       
                       </tr>
                     );
                   })}

@@ -40,7 +40,7 @@ setLoading(true)
         <div className="col-md-8 ">
           {product && (<div>
             <p><b>{product.name}</b></p>
-            <img src={product.imageURL} alt="" className="product-img-info" />
+            <img src={product.imageURL} alt="image" className="product-img-info" />
             <hr />
             <p>{product.description}</p>
             
